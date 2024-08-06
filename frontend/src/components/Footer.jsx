@@ -76,7 +76,7 @@ const Footer = () => {
           </div>
         </div>
         <div className="text-center mt-8">
-          <p>© 2024 Sub Urbans By FreAkeD</p>
+          <p>© 2024 HRT - Hustle & Refine Tees By FreAkeD</p>
         </div>
       </div>
     </footer>
