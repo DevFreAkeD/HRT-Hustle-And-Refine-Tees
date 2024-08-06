@@ -1,12 +1,12 @@
-// src/components/Carousel.js
+// src/components/Carousel.jsx
 
 import React from 'react';
 
 const Carousel = () => {
   return (
-    <div className="carousel w-full h-[30rem] bg-gray-300">
+    <div className="carousel w-full h-[25rem] bg-gray-300">
       <div className="flex justify-center">
-        <img src="https://via.placeholder.com/800x300" alt="Carousel Slide" className="w-auto h-[30rem]" />
+        <img src="https://via.placeholder.com/800x300" alt="Carousel Slide" className="w-auto h-[25rem]" />
       </div>
     </div>
   );
