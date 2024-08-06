@@ -3,6 +3,7 @@ import cors from 'cors';
 import * as dotenv from 'dotenv';
 import connectDB from './mongodb/connect.js';
 import adminRoutes from './routes/adminRoutes.js';
+import userRoutes from './routes/usersRoutes.js';
 import helmet from 'helmet';
 
 dotenv.config();
@@ -12,8 +13,8 @@ app.use(helmet());
 app.use(cors());
 app.use(express.json());
 
-// Use admin routes
 app.use('/api/admin', adminRoutes);
+app.use('/api/users', userRoutes);
 
 app.get('/', (req, res) => {
   res.send('Hello from Hustle & Refine Tees!');
