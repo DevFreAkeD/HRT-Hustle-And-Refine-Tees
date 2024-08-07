@@ -1,20 +1,21 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import { FaHeart } from 'react-icons/fa'; // Import Font Awesome heart icon
 
 const products = {
   bestSellers: [
-    { id: 1, name: 'Product 1', image: 'https://via.placeholder.com/300x200' },
-    { id: 2, name: 'Product 2', image: 'https://via.placeholder.com/300x200' },
-    { id: 3, name: 'Product 3', image: 'https://via.placeholder.com/300x200' },
-    { id: 4, name: 'Product 4', image: 'https://via.placeholder.com/300x200' },
-    { id: 5, name: 'Product 5', image: 'https://via.placeholder.com/300x200' },
+    { id: 1, name: 'Product 1', image: 'https://via.placeholder.com/300x200', price: '$19.99', sizes: ['S', 'M', 'L'] },
+    { id: 2, name: 'Product 2', image: 'https://via.placeholder.com/300x200', price: '$29.99', sizes: ['M', 'L', 'XL'] },
+    { id: 3, name: 'Product 3', image: 'https://via.placeholder.com/300x200', price: '$24.99', sizes: ['S', 'L'] },
+    { id: 4, name: 'Product 4', image: 'https://via.placeholder.com/300x200', price: '$34.99', sizes: ['M', 'XL'] },
+    { id: 5, name: 'Product 5', image: 'https://via.placeholder.com/300x200', price: '$14.99', sizes: ['S', 'M'] },
   ],
   newArrivals: [
-    { id: 1, name: 'Product 1', image: 'https://via.placeholder.com/300x200' },
-    { id: 2, name: 'Product 2', image: 'https://via.placeholder.com/300x200' },
-    { id: 3, name: 'Product 3', image: 'https://via.placeholder.com/300x200' },
-    { id: 4, name: 'Product 4', image: 'https://via.placeholder.com/300x200' },
-    { id: 5, name: 'Product 5', image: 'https://via.placeholder.com/300x200' },
+    { id: 1, name: 'Product 1', image: 'https://via.placeholder.com/300x200', price: '$22.99', sizes: ['S', 'M', 'XL'] },
+    { id: 2, name: 'Product 2', image: 'https://via.placeholder.com/300x200', price: '$27.99', sizes: ['M', 'L'] },
+    { id: 3, name: 'Product 3', image: 'https://via.placeholder.com/300x200', price: '$19.99', sizes: ['S', 'XL'] },
+    { id: 4, name: 'Product 4', image: 'https://via.placeholder.com/300x200', price: '$30.99', sizes: ['M', 'L', 'XL'] },
+    { id: 5, name: 'Product 5', image: 'https://via.placeholder.com/300x200', price: '$18.99', sizes: ['S', 'M'] },
   ],
 };
 
@@ -44,22 +45,39 @@ const ProductDisplay = () => {
           </button>
         </div>
       </div>
-      <div className="grid grid-cols-5 gap-4 my-4">
-        {products[selectedCategory].map((product) => (
-          <Link
-            to={`/product/${product.id}`} // Redirects to product details page with product ID
-            key={product.id}
-            className="relative block"
-          >
-            <img
-              src={product.image}
-              alt={product.name}
-              className="w-full h-[25rem] object-cover rounded-lg"
-            />
-            <div className="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center rounded-lg">
-              <span className="text-white text-xl font-bold">{product.name}</span>
+      <div className="grid grid-cols-2 md:grid-cols-4 gap-4 my-4">
+        {products[selectedCategory].slice(0, 4).map((product) => (
+          <div key={product.id} className="relative border border-gray-300 rounded-lg overflow-hidden bg-white">
+            <Link to={`/product/${product.id}`} className="block">
+              <img
+                src={product.image}
+                alt={product.name}
+                className="w-full h-[20rem] object-cover"
+              />
+            </Link>
+            <div className="p-4">
+                <div>
+                  <h3 className="text-lg font-bold mb-1">{product.name}</h3>
+                  <div className="flex justify-between items-center mb-2">
+                    <span className="text-lg font-semibold">{product.price}</span>
+                    <button className="text-red-600 text-xl">
+                      <FaHeart />
+                    </button>
+                  </div>
+                </div>
+              <div className="mb-2">
+                <span className="text-sm font-semibold">Sizes:</span>
+                <div className="flex space-x-2 mt-1">
+                  {product.sizes.map((size) => (
+                    <span key={size} className="px-2 py-1 border border-gray-300 rounded-md text-sm">{size}</span>
+                  ))}
+                </div>
+              </div>
+              <button className="w-full px-4 py-2 bg-gray-700 text-white rounded-lg hover:bg-gray-800">
+                Add to Cart
+              </button>
             </div>
-          </Link>
+          </div>
         ))}
       </div>
     </div>
