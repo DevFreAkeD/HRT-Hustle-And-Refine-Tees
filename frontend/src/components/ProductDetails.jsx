@@ -1,10 +1,16 @@
-// src/components/ProductDetails.js
-
 import React, { useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
+
+// Simulated categories data
+const categories = [
+  { id: 'trending-collection', name: 'Trending Collection' },
+  { id: 'best-sellers', name: 'Best Sellers' },
+  { id: 'oversize-t-shirts', name: 'Oversize T-Shirts' },
+  { id: 't-shirts', name: 'T-Shirts' },
+];
 
 const ProductDetails = () => {
-  const { id } = useParams(); // Get the product ID from the URL
+  const { categoryId, id } = useParams(); // Get the category ID and product ID from the URL
 
   // Fetch or find the product details by ID here (for demonstration, using a static object)
   const product = {
@@ -22,8 +28,25 @@ const ProductDetails = () => {
 
   const [selectedImage, setSelectedImage] = useState(product.images[0]);
 
+  const category = categories.find(cat => cat.id === categoryId);
+
+  const breadcrumb = () => (
+    <nav className="text-sm text-gray-800 mb-4">
+      <Link to="/products" className="hover:underline">All Products</Link> {' > '}
+      {categoryId && (
+        <>
+          <Link to={`/products/${categoryId}`} className="hover:underline">
+            {category ? category.name : categoryId.replace(/-/g, ' ').replace(/\b\w/g, l => l.toUpperCase())}
+          </Link> {' > '}
+        </>
+      )}
+      <span>{product.name}</span>
+    </nav>
+  );
+
   return (
     <div className="container mx-auto py-8 px-12">
+      {breadcrumb()}
       <div className="flex">
         {/* Main Image Display */}
         <div className="flex-shrink-0 w-1/2">
