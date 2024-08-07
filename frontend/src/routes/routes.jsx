@@ -8,6 +8,7 @@ import ProductDetails from '../components/ProductDetails';
 import AdminLogin from '../pages/Admin/AdminLogin';
 import AdminDashboard from '../pages/Admin/AdminDashboard';
 import Login from '../pages/Login';
+import Products from '../components/products/Products';
 
 // Component to conditionally render Header and Footer
 const AppLayout = ({ children }) => {
@@ -34,6 +35,8 @@ const AppRoutes = () => {
           <Route path="/" element={<Home />} />
           <Route path="/product/:id" element={<ProductDetails />} />
           <Route path="/login" element={<Login />} />
+          <Route path="/products" element={<Products />} />
+          <Route path="/products/:categoryId" element={<Products />} />
 
           {/* Admin routes */}
           <Route path="/admin/login" element={<AdminLogin />} />
