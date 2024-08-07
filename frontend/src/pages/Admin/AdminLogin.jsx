@@ -6,14 +6,14 @@ const AdminLoginRegister = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
-  const [loading, setLoading] = useState(false); // For loading state
-  const [isRegistering, setIsRegistering] = useState(false); // Toggle between login and register
+  const [loading, setLoading] = useState(false);
+  const [isRegistering, setIsRegistering] = useState(false);
   const navigate = useNavigate();
 
   const handleLogin = async (e) => {
     e.preventDefault();
     setLoading(true);
-    setError(''); // Clear previous errors
+    setError('');
 
     try {
       const response = await axios.post('http://localhost:8080/api/admin/login', { username, password });
@@ -33,7 +33,7 @@ const AdminLoginRegister = () => {
   const handleRegister = async (e) => {
     e.preventDefault();
     setLoading(true);
-    setError(''); // Clear previous errors
+    setError('');
 
     try {
       await axios.post('http://localhost:8080/api/admin/register', { username, password });
